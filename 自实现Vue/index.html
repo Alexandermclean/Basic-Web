@@ -1,1 +1,66 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue</title>
+  <script type="text/javascript" src='./observe.js'></script>
+  <script type="text/javascript" src='./watcher.js'></script>
+</head>
+<body>
+  name<input type="text" name="yyy" id='inputText' onKeyUp='keyup()' />
+  sex<input type="text" name="yyy2" id='inputText2' onKeyUp='keyup2()' />
+  <span id='name'>{{ name }}</span>
+  <span id='sex'>{{ sex }}</span>
+</body>
+<script type="text/javascript">
+  // import observe from './observe.js'
+  // import watcher from './watcher.js'
+  var elList = {name: document.querySelector('#name'), sex: document.querySelector('#sex')} // 这里没有解析dom和数据的绑定关系，需要compile类关联watcher（订阅者）和observer（监听者）=> 监听到了data变化告诉对应的dom做合适的操作，即watcher的cb函数操作
+  var data = {
+    name: 'yuhui',
+    sex:'male'
+  }
+  var expList = Object.keys(data)
+  function selfVue (data, elList, expList) {
+    this.data = data
+    this.proxyKeys(this.data)
+
+    observer(data)
+    for (let i in elList) {
+      elList[i].innerHTML = this.data[i]
+    }
+    // el.innerHTML = this.data[exp]
+    expList.forEach(function (val, index) {
+      new Watcher(this, val, function (newValue, oldValue) {
+        elList[val].innerHTML = newValue
+      })
+    })
+    return this
+  }
+  selfVue.prototype = {
+    proxyKeys: function (data) {
+      var self = this
+      Object.keys(data).forEach(function (val, index) {
+        Object.defineProperty(self, val, { // 这里需要用self来代替指向selfVue，而不是直接用this（指向window）
+          enumerable: true,
+          configurable: true,
+          get: function () {
+            return self.data[val]
+          },
+          set: function (newVal) {
+            self.data[val] = newVal
+          }
+        })
+      })
+    } // 将vm.data.key 代理到vm.key上
+  }
+
+  var vm = new selfVue(data, elList, expList)
+  function keyup() {
+    vm.name = document.querySelector('#inputText').value
+  }
+  function keyup2() {
+    vm.sex = document.querySelector('#inputText2').value
+  }
+</script>
+</html>
