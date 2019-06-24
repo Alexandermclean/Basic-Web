@@ -1,4 +1,12 @@
-### 1.Cache-control
+### 1.http协议的缓存机制
+对http请求来说，客户端缓存分三类：  
+1. 不发任何请求，直接从缓存中取数据，代表的特性有： Expires ，Cache-Control=<number！=0>和appcache  
+2. 发请求确认是否新鲜，再决定是否返回304并从缓存中取数据 :代表的特性有：Last-Modified/If-Modified-Since，Etag/If-None-Match  
+3. 直接发送请求， 没有缓存，代表的特性有：Cache-Control：max-age=0/no-cache  
+
+![](./asset_pic/cache.png)
+
+### 2.Cache-control
 
 |Cache-directive|说明|
 |:------|:-----|
@@ -15,3 +23,4 @@
 |在地址栏回车|如果值为private或must-revalidate,则只有第一次访问时会访问服务器,以后就不再访问。如果值为no-cache,那么每次都会访问。如果值为max-age,则在过期之前不会重复访问。|
 |按后退按扭|如果值为private、must-revalidate、max-age,则不会重访问,而如果为no-cache,则每次都重复访问.|
 |按刷新按扭|无论为何值,都会重复访问.|
+ 
