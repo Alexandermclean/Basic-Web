@@ -21,6 +21,8 @@ var yyy = new person()
 yyy.getName = function () {
 	return 'private function'
 }
+
+yyy.getName() // 'private function'
 ```
 
 三种为对象申明方法的方式，其中优先级是  内部方法 > this > prototype定义，优先级高的方式申明的方法会覆盖底的方法
