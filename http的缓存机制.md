@@ -1,12 +1,12 @@
 ### 1.http协议的缓存机制
 http缓存机制可以有很多设置，比如：html5 appcache，Expires，Cache-control，Last-Modified/If-Modified-Since，Etag/If-None-Match等等，单个特性还能知道一点，但这几个特性一起再配合浏览器的行为之后就很懵逼了......  
 
-对http请求来说，客户端缓存分三类：  
+**对http请求来说，客户端缓存分三类：** 
 1. 不发任何请求，直接从缓存中取数据，代表的特性有： Expires ，Cache-Control=<number！=0>和appcache  
 2. 发请求确认是否新鲜，再决定是否返回304并从缓存中取数据 :代表的特性有：Last-Modified/If-Modified-Since，Etag/If-None-Match  
 3. 直接发送请求， 没有缓存，代表的特性有：Cache-Control：max-age=0/no-cache  
 
-各种缓存的判断优先级如下图  
+**各种缓存的判断优先级如下图（cache-control优先级最高）** 
 
 ![](./asset_pic/cache.png)
 
