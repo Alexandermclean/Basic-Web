@@ -4,6 +4,7 @@
 2. 发请求确认是否新鲜，再决定是否返回304并从缓存中取数据 :代表的特性有：Last-Modified/If-Modified-Since，Etag/If-None-Match  
 3. 直接发送请求， 没有缓存，代表的特性有：Cache-Control：max-age=0/no-cache  
 
+各种缓存的判断优先级如下图  
 ![](./asset_pic/cache.png)
 
 ### 2.Cache-control
