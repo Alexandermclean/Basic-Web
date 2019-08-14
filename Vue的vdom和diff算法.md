@@ -1,0 +1,3 @@
+# 概述
+在面试Vue开发的时候呢总是会被问到Vue的vdom和diff算法，但是看了源码的patch.js估计也是很抽象，所以呢在这里就结合Vue源码和其他人对这方面的理解，整理了这部分出来。  
+如果不了解virtual dom，要理解diff的过程是比较困难的。虚拟dom对应的是真实dom，使用document.CreateElement和document.CreateTextNode创建的就是真实节点。vue2.0才开始使用了virtual dom，有向react靠拢的意思。
