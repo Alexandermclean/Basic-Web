@@ -1,4 +1,16 @@
 ## 1.基本概念
+1.constructor方法默认返回实例对象（即this）
+2.__proto__是隐式原型，指向构造函数的原型（对象都有）
+3.prototype构造函数才有，创建的对象实例
+
+```javascript
+var fn = function fun () {
+	this.getName = function () {return fun.name}
+}
+console.log((new fn()).constructor === fn) // true
+console.log((new fn()).__proto__ === fn.prototype) // true
+```
+
 定义在构造函数内部的方法，在实例化的时候都会重新定义一遍；而定义在原型链上的方法，所有实例对象都会共享（指针指向）
 
 > 实例对象.\_proto\_ === 构造函数.prototype；  
