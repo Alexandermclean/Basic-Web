@@ -1,7 +1,7 @@
 ## 1.基本概念
-1.constructor方法默认返回实例对象（即this）
-2.__proto__是隐式原型，指向构造函数的原型（对象都有）
-3.prototype构造函数才有，创建的对象实例
+1.constructor方法默认返回实例对象（即this）  
+2.__proto__是隐式原型，指向构造函数的原型（对象都有）  
+3.prototype构造函数才有，创建的对象实例  
 
 ```javascript
 var fn = function fun () {
