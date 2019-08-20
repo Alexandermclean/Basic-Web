@@ -90,7 +90,7 @@ const obj = {
 Object.setPrototypeOf(obj,proto);
 obj.foo();  //world
 ```
-> JavaScript引擎内部，super.foo等同于Object.getPrototypeOf(this).foo(属性) 或Object.getPrototypeOf(this).foo.call(this)（方法）。
+> JavaScript引擎内部，super.foo等同于Object.getPrototypeOf(this).foo(属性) 或Object.getPrototypeOf(this).foo.call(this)（方法）。  
 > 第二段代码中，super.foo指向原型对象proto的foo方法，但是绑定的this却还是当前对象boj，因此输出的就是world。
 
 
