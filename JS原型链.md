@@ -53,3 +53,44 @@ obj._proto_ = Base.prototype
 Base.call(obj) // 将Base构造函数的作用域赋值给obj，this指向
 
 ```
+
+## 4.super关键字
+this关键字总是指向函数所在的当前对象，ES6又新增了另一个类似的关键字super，指向当前对象的原型对象。
+```javascript
+const proto = {
+     foo : "hello",
+};
+const obj = {
+    foo : "world",
+    find(){
+         console.log(this.foo)
+    },
+    finds(){
+         console.log(super.foo)
+     }
+}
+Object.setPrototypeOf(obj,proto) // 将obj的prototype改为proto
+obj.find() // world
+obj.finds() // hello
+
+
+// 关于super和this的指向
+const proto = {
+     x : "hello",
+     foo (){
+         console.log(this.x);
+     },
+};
+const obj = {
+     x : "world",
+     foo(){
+         super.foo();
+     },
+ };
+Object.setPrototypeOf(obj,proto);
+obj.foo();  //world
+```
+> JavaScript引擎内部，super.foo等同于Object.getPrototypeOf(this).foo(属性) 或Object.getPrototypeOf(this).foo.call(this)（方法）。
+> 第二段代码中，super.foo指向原型对象proto的foo方法，但是绑定的this却还是当前对象boj，因此输出的就是world。
+
+
